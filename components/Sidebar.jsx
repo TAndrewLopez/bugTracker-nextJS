@@ -1,14 +1,15 @@
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../features/authSlice";
+import { signOut } from "../store/features/authSlice";
 
-export default function () {
+const Sidebar = () => {
   const dispatch = useDispatch();
   const { admin } = useSelector((state) => state.authReducer);
   const { sidebarOpen } = useSelector((state) => state.viewReducer);
 
   const navLinks = [
-    { path: "/", text: "Dashboard" },
-    { path: "/bugs", text: "View Bugs" },
+    { path: "/dashboard", text: "Dashboard" },
+    { path: "/allBugs", text: "View Bugs" },
   ];
 
   return (
@@ -19,14 +20,16 @@ export default function () {
         {navLinks.map((item, i) => (
           <Link
             key={item.text + i}
-            to={item.path}
+            href={item.path}
             className="pl-8 py-2 hover:bg-accent transition-all ease-in-out duration-300">
             {item.text}
           </Link>
         ))}
         {admin && (
-          <Link className="pl-8 py-2 hover:bg-accent transition-all ease-in-out duration-300">
-            Create Bugs
+          <Link
+            href={"/createBug"}
+            className="pl-8 py-2 hover:bg-accent transition-all ease-in-out duration-300">
+            Create Bug
           </Link>
         )}
       </ul>
@@ -37,4 +40,6 @@ export default function () {
       </button>
     </div>
   );
-}
+};
+
+export default Sidebar;

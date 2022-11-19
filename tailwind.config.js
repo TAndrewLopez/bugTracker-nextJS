@@ -16,8 +16,7 @@ module.exports = {
         signalGreen: "#32cd32",
       },
       backgroundImage: {
-        loginBG: `url(./src/assets/images/loginBG1.jpg)`,
-        appLogo: `url(./src/assets/images/appLogo.png)`,
+        loginBG: `url(/loginBG.jpg)`,
       },
       fontFamily: {
         sans: "Poppins",

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../features/viewSlice";
+import { toggleSidebar } from "../store/features/viewSlice";
 import {
   DropDownIcon,
   BugIcon,
