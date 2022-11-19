@@ -6,7 +6,6 @@ const BugCard = ({ data }) => {
   const clicked = (e) => {
     console.log(data);
   };
-  // console.log(bugBorderColor(priority));
   // TODO:ADD A NECESSARY FIELDS FOR TICKETS
   return (
     <div

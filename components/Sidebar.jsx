@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../store/features/authSlice";
+import { signOut } from "../redux/features/authSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();

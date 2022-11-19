@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signIn } from "../store/features/authSlice";
+import { signIn } from "../redux/features/authSlice";
 import {
   ErrorIcon,
   LockIcon,
@@ -180,7 +180,7 @@ export default function Login() {
           <span
             className={`absolute z-[-1] bottom-8 min-w-max text-light bg-darkBlueGrey ease-in-out duration-500 px-2 py-1 pointer-events-none rounded-sm
             ${adminHover ? "translate-y-[-35px] opacity-100" : "opacity-0"} `}>
-            Sing in as Admin
+            Sign in as Admin
           </span>
           <AdminIcon
             twClass={`w-6 ${adminHover ? "fill-light" : "fill-accent"}`}

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBugs } from "../store/features/bugSlice";
+import { getBugs } from "../redux/features/bugSlice";
 import { BugCard } from "../components";
 
 const BugsView = () => {

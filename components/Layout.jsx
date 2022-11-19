@@ -13,6 +13,7 @@ const Layout = ({ children }) => {
         <>
           <Menubar />
           <Sidebar />
+          {children}
         </>
       )}
     </>
