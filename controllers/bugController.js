@@ -30,78 +30,97 @@ export const bugBorderColor = (num) => {
 //TODO: REPLACE WHEN DATABASE IS SETUP
 
 export const retrieveBugs = () => {
-  let data = [];
-  data.push(
-    new bugModel({
+  const tempBugs = [
+    {
       _id: Math.floor(Math.random() * 1000),
-      name: "Won't Load",
-      details: "Crashes after 3 seconds",
-      steps: "Open application and it will crash",
+      name: "MOBILE STYLES",
+      details: "Necessary for UX",
+      steps: "Required for each page",
       version: "v1.0",
-      assigned: "Drew Dobson",
-      creator: "John Doe",
+      assigned: "Edwin Stone",
+      creator: "Squash CRM",
+      priority: 3,
+      time: new Date().toLocaleString(),
+    },
+    {
+      _id: Math.floor(Math.random() * 1000),
+      name: "TABLE STYLES",
+      details: "Necessary for UX",
+      steps: "Required for each page",
+      version: "v1.0",
+      assigned: "Logan Palmer",
+      creator: "Squash CRM",
+      priority: 3,
+      time: "",
+    },
+    {
+      _id: Math.floor(Math.random() * 1000),
+      name: "DESKTOP STYLES",
+      details: "Necessary for UX",
+      steps: "Required for each page",
+      version: "v1.0",
+      assigned: "Hugh Mcdowell",
+      creator: "Squash CRM",
+      priority: 3,
+      time: "",
+    },
+    {
+      _id: Math.floor(Math.random() * 1000),
+      name: "USER CRUD",
+      details: "GET/POST/PUT/DEL user routes",
+      steps: "N/A",
+      version: "v1.0",
+      assigned: "Lewis Hamilton",
+      creator: "Squash CRM",
       priority: 2,
-      time: "17:59",
-    })
-  );
-
-  data.push(
-    new bugModel({
+      time: "",
+    },
+    {
       _id: Math.floor(Math.random() * 1000),
-      name: "Duplicates Entries",
-      details: "Running retrieve bugs seems to run twice on each execution",
-      steps: "Call retrieveBugs()",
+      name: "TICKET CRUD",
+      details: "GET/POST/PUT/DEL ticket routes",
+      steps: "N/A",
+      version: "v1.0",
+      assigned: "Alejandro Knapp",
+      creator: "Squash CRM",
+      priority: 2,
+      time: "",
+    },
+    {
+      _id: Math.floor(Math.random() * 1000),
+      name: "AUTHENTICATION",
+      details: "Authenticate users and validate privileges",
+      steps: "N/A",
+      version: "v1.0",
+      assigned: "Cheyenne Mccann",
+      creator: "Squash CRM",
+      priority: 1,
+      time: "",
+    },
+    {
+      _id: Math.floor(Math.random() * 1000),
+      name: "USER NOTIFICATIONS",
+      details: "N/A",
+      steps: "N/A",
+      version: "v1.0",
+      assigned: "Camden Rodriguez",
+      creator: "Squash CRM",
+      priority: 2,
+      time: "",
+    },
+    {
+      _id: Math.floor(Math.random() * 1000),
+      name: "CREATE PORT",
+      details:
+        "You started this project, but you still have to complete your portfolio.",
+      steps: "Skills Sections. Projects Section. Hero Image.",
       version: "v1.0",
       assigned: "Drew Dobson",
-      creator: "Mary Jane",
-      priority: 1,
-      time: "11:37",
-    })
-  );
-  data = data.map((item) => {
-    const {
-      _id,
-      name,
-      details,
-      steps,
-      version,
-      assigned,
-      creator,
-      priority,
-      time,
-    } = item;
+      creator: "Drew Dobson",
+      priority: 3,
+      time: "",
+    },
+  ];
 
-    return {
-      _id,
-      name,
-      details,
-      steps,
-      version,
-      assigned,
-      creator,
-      priority,
-      time,
-    };
-  });
-  let sorted = data.sort((a, b) => a.priority - b.priority);
-  return sorted;
+  return tempBugs;
 };
-
-// export const retrieveBugs = () => {
-//   let data = [];
-//   data.push(
-//   new bugModel({
-//     _id: 123456789,
-//     name: "Won't Load",
-//     details: "Crashes after 3 seconds",
-//     steps: "Open application and it will crash",
-//     version: "V1",
-//     assigned: "Drew Dobson",
-//     creator: "John Doe",
-//     priority: 4,
-//     time: "17:59",
-//   })
-// );
-//   let sorted = data.sort((a, b) => a.priority - b.priority);
-//   return sorted;
-// };

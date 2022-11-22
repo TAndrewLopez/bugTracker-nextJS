@@ -5,9 +5,11 @@ const Dashboard = () => {
 
   return (
     <div
-      className={`absolute z-[-2] flex flex-wrap flex-col md:flex-row justify-center ease-in-out duration-300 p-4 bg-red-500
-    ${sidebarOpen ? "md:ml-80" : ""}`}>
-      Dashboard
+      className={`absolute top-20 z-[-2] flex flex-col justify-center ease-in-out duration-300 p-4 bg-red-500
+      ${sidebarOpen ? "md:pl-80 w-full" : "w-full"}`}>
+      {/* <div className="w-full h-full bg-appLogo bg-cover bg-center bg-no-repeat">
+        <div className="h-max"></div>
+      </div> */}
     </div>
   );
 };

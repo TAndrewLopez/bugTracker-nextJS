@@ -1,3 +1,4 @@
+export { default as AddUserIcon } from "./AddUserIcon";
 export { default as AdminIcon } from "./AdminIcon";
 export { default as BellIcon } from "./BellIcon";
 export { default as BugIcon } from "./BugIcon";

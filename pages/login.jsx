@@ -6,6 +6,7 @@ import {
   LockIcon,
   ProfileIcon,
   UsersIcon,
+  AddUserIcon,
   AdminIcon,
 } from "../assets/faIcons";
 
@@ -25,6 +26,7 @@ export default function Login() {
   //LOGIN ICON STATE
   const [adminHover, setAdminHover] = useState(false);
   const [employeeHover, setEmployeeHover] = useState(false);
+  const [newUserHover, setNewUserHover] = useState(false);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -156,7 +158,7 @@ export default function Login() {
       </div>
 
       {/* DEMO LOGIN BUTTON */}
-      <div className="w-full fixed bottom-3 flex justify-center gap-24">
+      <div className="w-full fixed bottom-3 flex justify-center gap-16 md:gap-24">
         <div
           onClick={() =>
             dispatch(
@@ -216,6 +218,31 @@ export default function Login() {
           </span>
           <UsersIcon
             twClass={`w-6 ${employeeHover ? "fill-light" : "fill-accent"}`}
+          />
+        </div>
+
+        <div
+          onClick={() => console.log("open create new user modal")}
+          onMouseEnter={() => {
+            if (!newUserHover) setNewUserHover(true);
+          }}
+          onMouseLeave={() => {
+            if (newUserHover) {
+              setTimeout(() => {
+                setNewUserHover(false);
+              }, 200);
+            }
+          }}
+          className="bg-light hover:bg-darkBlueGrey cursor-pointer rounded-full flex flex-col justify-center items-center p-4 relative ease-in-out duration-500">
+          <span
+            className={`absolute z-[-1] bottom-8 min-w-max text-light bg-darkBlueGrey ease-in-out duration-500 px-2 py-1 pointer-events-none rounded-sm
+            ${
+              newUserHover ? "translate-y-[-35px] opacity-100" : "opacity-0"
+            } `}>
+            Create New User
+          </span>
+          <AddUserIcon
+            twClass={`w-6 ${newUserHover ? "fill-light" : "fill-accent"}`}
           />
         </div>
       </div>

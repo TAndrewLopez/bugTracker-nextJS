@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../redux/features/authSlice";
+import { toggleSidebar } from "../redux/features/viewSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,11 @@ const Sidebar = () => {
       <ul className="flex flex-col py-2">
         {navLinks.map((item, i) => (
           <Link
+            onClick={() => {
+              if (window.innerWidth < 600) {
+                dispatch(toggleSidebar());
+              }
+            }}
             key={item.text + i}
             href={item.path}
             className="pl-8 py-2 hover:bg-accent transition-all ease-in-out duration-300">
@@ -27,6 +33,11 @@ const Sidebar = () => {
         ))}
         {admin && (
           <Link
+            onClick={() => {
+              if (window.innerWidth < 600) {
+                dispatch(toggleSidebar());
+              }
+            }}
             href={"/createBug"}
             className="pl-8 py-2 hover:bg-accent transition-all ease-in-out duration-300">
             Create Bug
@@ -35,7 +46,7 @@ const Sidebar = () => {
       </ul>
       <button
         onClick={() => dispatch(signOut())}
-        className={`bg-blueGrey hover:bg-accent px-6 py-2 transition-all ease-in-out duration-300`}>
+        className={`bg-accent md:bg-blueGrey hover:bg-accent px-6 py-2 transition-all ease-in-out duration-300`}>
         Sign Out
       </button>
     </div>

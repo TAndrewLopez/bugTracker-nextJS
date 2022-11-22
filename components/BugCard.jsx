@@ -1,7 +1,20 @@
-import { bugPriorityLevel, bugBorderColor } from "../controllers/bugController";
+import { bugPriorityLevel } from "../controllers/bugController";
 
 const BugCard = ({ data }) => {
   const { name, details, steps, version, assigned, creator, priority } = data;
+
+  const bugBorderColor = (num) => {
+    switch (num) {
+      case 1:
+        return "border-t-4 border-t-errorRed";
+      case 2:
+        return "border-t-4 border-t-cautionOrange";
+      case 3:
+        return "border-t-4 border-t-signalGreen";
+      default:
+        return "";
+    }
+  };
 
   const clicked = (e) => {
     console.log(data);
@@ -9,7 +22,7 @@ const BugCard = ({ data }) => {
   // TODO:ADD A NECESSARY FIELDS FOR TICKETS
   return (
     <div
-      className={`h-48 shadow-3xl rounded text-center m-5 p-8 hover:scale-105 transition ease-in-out duration-300 text-darkGrey flex flex-col justify-between cursor-pointer ${bugBorderColor(
+      className={`min-h-48 shadow-3xl rounded text-center m-5 p-8 hover:scale-105 transition ease-in-out duration-300 text-darkGrey flex flex-col justify-between cursor-pointer ${bugBorderColor(
         priority
       )}`}
       onClick={clicked}>

@@ -17,6 +17,7 @@ module.exports = {
       },
       backgroundImage: {
         loginBG: `url(/loginBG.jpg)`,
+        appLogo: `url(/appLogo.png)`,
       },
       fontFamily: {
         sans: "Poppins",
