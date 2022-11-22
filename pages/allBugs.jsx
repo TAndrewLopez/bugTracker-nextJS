@@ -12,6 +12,7 @@ const BugsView = () => {
     dispatch(getBugs());
   }, []);
 
+  // TODO:: ADD LINK TO EACH TICKET/BUG SO IT WILL DIRECT TO NESTED ROUTE
   return (
     <div
       className={`absolute top-20 z-[-2] flex flex-col justify-center ease-in-out duration-300 p-4
