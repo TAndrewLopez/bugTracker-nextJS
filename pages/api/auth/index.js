@@ -11,15 +11,24 @@ export default async function handler(req, res) {
       });
 
       if (user) {
-        //TODO: SEND BACK JWT TOKEN
         res.status(201).send({ token: await user.generateToken() });
       }
     } catch (error) {
       res.status(500).json({ error });
     }
-  } else {
-    res.status(500).json({
-      message: "An error has occurred. Please resubmit to try again.",
-    });
+    return;
   }
+
+  if (req.method === "GET") {
+    res.status(201).send(await User.findByToken(req.headers.authorization));
+    try {
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+    return;
+  }
+
+  return res.status(500).json({
+    message: "An error has occurred. Please resubmit to try again.",
+  });
 }

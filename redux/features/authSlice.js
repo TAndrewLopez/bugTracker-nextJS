@@ -3,22 +3,27 @@ import { createSlice } from "@reduxjs/toolkit";
 const slice = createSlice({
   name: "auth",
   initialState: {
-    admin: false,
+    isAdmin: false,
     loggedIn: false,
   },
 
   reducers: {
+    attemptTokenLogin(token) {
+      if (!token) {
+        token = window.localStorage.getItem("token");
+      }
+    },
     signIn(state, action) {
       const { name, password } = action.payload;
 
       if (name === "admin") {
-        state.admin = true;
+        state.isAdmin = true;
       }
       state.loggedIn = true;
     },
     signOut(state) {
       state.loggedIn = false;
-      state.admin = false;
+      state.isAdmin = false;
     },
     createUser(state, action) {},
   },

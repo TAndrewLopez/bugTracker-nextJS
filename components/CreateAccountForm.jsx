@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { validateCreateForm } from "../controllers/createFormController";
+import { useState } from "react";
 
 const CreateAccountForm = ({ toggle }) => {
   const [form, setForm] = useState({
@@ -11,26 +10,26 @@ const CreateAccountForm = ({ toggle }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    validateCreateForm(form) ? console.log("submit form") : "";
+    // TODO: VALIDATE FORM BEFORE SENDING TO BACKEND
 
-    //TODO: SEND DATA OVER SERVER
-    const response = await fetch("api/users", {
+    const { token } = await fetch("api/auth", {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    }).then((data) => data.json());
 
-    const data = await response.json();
-    if (data) {
-      console.log(data, "data returned needs to be a jwt token");
-      setForm({
-        username: "",
-        email: "",
-        password: "",
-        confirm: "",
-      });
+    if (token) {
+      //TODO: STORE TOKEN IN LOCAL STORAGE
+      console.log(token);
+      //TODO: RESET FORM AFTER SUBMISSION
+      // setForm({
+      //   username: "",
+      //   email: "",
+      //   password: "",
+      //   confirm: "",
+      // });
     }
   };
 

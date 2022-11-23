@@ -1,7 +1,10 @@
+import { useDispatch } from "react-redux";
+import { signIn } from "../redux/features/authSlice";
 import { useState } from "react";
 import { ErrorIcon, LockIcon, ProfileIcon } from "../assets/faIcons";
 
 const LoginForm = ({ setToggleIcons }) => {
+  const dispatch = useDispatch();
   const [nameFocused, setNameFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [nameFieldValidation, setNameFieldValidation] = useState(false);

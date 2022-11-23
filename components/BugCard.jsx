@@ -19,7 +19,7 @@ const BugCard = ({ data }) => {
   const clicked = (e) => {
     console.log(data);
   };
-  // TODO:ADD A NECESSARY FIELDS FOR TICKETS
+
   return (
     <div
       className={`min-h-48 shadow-3xl rounded text-center m-5 p-8 hover:scale-105 transition ease-in-out duration-300 text-darkGrey flex flex-col justify-between cursor-pointer ${bugBorderColor(
@@ -30,6 +30,8 @@ const BugCard = ({ data }) => {
       <p>{details}</p>
       <p className="text-grey">{`Priority: ${bugPriorityLevel(priority)}`}</p>
       <p>{`Application Version: ${version}`}</p>
+      <p>{`Assigned to: ${assigned}`}</p>
+      <p>{`Creator: ${creator}`}</p>
     </div>
   );
 };
