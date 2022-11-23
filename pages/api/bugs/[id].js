@@ -1,6 +1,6 @@
 export default function handler({ query: { id } }, res) {
-  const [filtered] = bugs.filter((article) => article.id === id);
-  if (filtered.length) {
+  const [filtered] = [].filter((article) => article.id === id);
+  if (filtered) {
     res.status(200).json(filtered);
   } else {
     res

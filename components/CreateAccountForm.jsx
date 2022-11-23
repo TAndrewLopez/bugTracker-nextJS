@@ -3,74 +3,78 @@ import { validateCreateForm } from "../controllers/createFormController";
 
 const CreateAccountForm = ({ toggle }) => {
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
     username: "",
+    email: "",
     password: "",
     confirm: "",
   });
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     validateCreateForm(form) ? console.log("submit form") : "";
+
+    //TODO: SEND DATA OVER SERVER
+    const response = await fetch("api/users", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (data) {
+      console.log(data, "data returned needs to be a jwt token");
+      setForm({
+        username: "",
+        email: "",
+        password: "",
+        confirm: "",
+      });
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 className="w-full text-4xl font-semibold text-light text-center mb-4">
+      <h1 className="w-full text-4xl font-semibold text-light  text-center mb-4">
         Create Account
       </h1>
       {/* TOP CONTAINER */}
       <div className="md:flex md:gap-3">
         <div className="w-full px-3">
-          <label className="text-light" htmlFor="first-name">
-            First Name
+          <label className="text-light" htmlFor="username">
+            Username
             <span className="ml-2 text-xs text-errorRed">*</span>
             <span className="ml-1 text-xs text-light">Required</span>
           </label>
           <input
-            id="first-name"
-            name="first-name"
+            id="username"
+            name="username"
             className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
-            onChange={(evt) =>
-              setForm({ ...form, firstName: evt.target.value })
-            }
-            value={form.firstName}
-          />
-        </div>
-        <div className="w-full px-3">
-          <label className="text-light" htmlFor="last-name">
-            Last Name
-            <span className="ml-2 text-xs text-errorRed">*</span>
-            <span className="ml-1 text-xs text-light">Required</span>
-          </label>
-          <input
-            id="last-name"
-            name="last-name"
-            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
-            onChange={(evt) => setForm({ ...form, lastName: evt.target.value })}
-            value={form.lastName}
+            onChange={(evt) => setForm({ ...form, username: evt.target.value })}
+            value={form.username}
           />
         </div>
       </div>
 
       {/* MIDDLE CONTAINER */}
       <div className="w-full px-3">
-        <label className="text-light" htmlFor="username">
-          Username
+        <label className="text-light" htmlFor="email">
+          Email
           <span className="ml-2 text-xs text-errorRed">*</span>
           <span className="ml-1 text-xs text-light">Required</span>
         </label>
         <input
-          id="username"
-          name="username"
+          id="email"
+          type="email"
+          name="email"
           className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
-          onChange={(evt) => setForm({ ...form, username: evt.target.value })}
-          value={form.username}
+          onChange={(evt) => setForm({ ...form, email: evt.target.value })}
+          value={form.email}
         />
       </div>
 
-      {/* END CONTAINER */}
+      {/* BOTTOM CONTAINER */}
       <div className="md:flex md:gap-3">
         <div className="w-full px-3">
           <label className="text-light" htmlFor="password">
@@ -112,11 +116,7 @@ const CreateAccountForm = ({ toggle }) => {
         <button
           className={`md:w-32 mt-2 px-6 py-2 rounded 
           ${
-            form.firstName &&
-            form.lastName &&
-            form.username &&
-            form.password &&
-            form.confirm
+            form.username && form.email && form.password && form.confirm
               ? "bg-accent text-white"
               : "bg-blueGrey cursor-default "
           }
