@@ -1,10 +1,12 @@
 const conn = require("../conn");
-const { Sequelize } = conn;
-const { STRING, BOOLEAN } = Sequelize;
+// const { Sequelize } = conn;
+const {
+  Sequelize: { STRING, BOOLEAN },
+} = conn;
+// const { STRING, BOOLEAN } = Sequelize;
 
 //AUTH IMPORTS
 const jwt = require("jsonwebtoken");
-
 const bcrypt = require("bcryptjs");
 const SALT_ROUNDS = 5;
 
@@ -36,25 +38,49 @@ const User = conn.define("user", {
   },
 });
 
-//INSTANCE METHODS
+//PROTOTYPE METHODS
 User.prototype.generateToken = function () {
-  const token = jwt.sign({ id: this.id }, process.env.JWT);
+  const token = jwt.sign(
+    { id: this.id, username: this.username },
+    process.env.JWT
+  );
   return token;
 };
 
+User.prototype.correctPassword = function (password) {
+  return bcrypt.compare(password, this.password);
+};
+
+//INSTANCE METHODS
 User.findByToken = async (token) => {
   try {
     const user = await User.findByPk(token);
 
     if (!user) {
-      const error = Error("Bad Credentials.");
+      const error = Error(
+        "Cannot find user with provided token. Bad Credentials."
+      );
       error.status = 401;
       throw error;
     }
     return user;
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    const error = Error(
+      "Cannot find user with provided token. Bad Credentials."
+    );
+    error.status = 401;
+    throw error;
   }
+};
+
+User.authenticate = async ({ username, password }) => {
+  const user = await User.findOne({ where: { username } });
+  if (!user || !(await user.correctPassword(password))) {
+    const error = Error("Incorrect Username/Password Combination.");
+    error.status = 401;
+    throw error;
+  }
+  return user.generateToken();
 };
 
 //HOOKS

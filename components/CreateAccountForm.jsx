@@ -12,25 +12,24 @@ const CreateAccountForm = ({ toggle }) => {
     evt.preventDefault();
     // TODO: VALIDATE FORM BEFORE SENDING TO BACKEND
 
-    const { token } = await fetch("api/auth", {
+    const options = {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((data) => data.json());
+    };
 
-    if (token) {
-      //TODO: STORE TOKEN IN LOCAL STORAGE
-      console.log(token);
-      //TODO: RESET FORM AFTER SUBMISSION
-      // setForm({
-      //   username: "",
-      //   email: "",
-      //   password: "",
-      //   confirm: "",
-      // });
-    }
+    const { token } = await fetch("api/auth/signUp", options)
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+
+    console.log("response from create account form: ", token);
+    //TODO: RESET FORM AFTER SUBMISSION
+    // setForm({
+    //   username: "",
+    //   email: "",
+    //   password: "",
+    //   confirm: "",
+    // });
   };
 
   return (
