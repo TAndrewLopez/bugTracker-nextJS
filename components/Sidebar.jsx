@@ -15,7 +15,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`fixed top-0 z-[-1] h-full w-full md:w-80 pt-20 pb-4 text-xl flex flex-col justify-between text-light bg-blueGrey ease-in-out duration-300 
+      className={`fixed top-0 z-[5] h-full w-full md:w-80 pt-20 pb-4 text-xl flex flex-col justify-between text-light bg-blueGrey ease-in-out duration-300 
       ${sidebarOpen ? "translate-x-0" : "translate-x-[-100%]"}`}>
       <ul className="flex flex-col py-2">
         {navLinks.map((item, i) => (

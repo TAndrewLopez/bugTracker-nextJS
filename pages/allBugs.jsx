@@ -8,6 +8,7 @@ const BugsView = () => {
   const bugs = useSelector((state) => state.bugReducer);
   const { sidebarOpen } = useSelector((state) => state.viewReducer);
 
+  //TODO://REMOVE FAKE FETCH DATA WITH FETCH FROM DATA BASE. POSSIBLY WITH SERVER SIDE PROPS?
   useEffect(() => {
     dispatch(getBugs());
   }, []);

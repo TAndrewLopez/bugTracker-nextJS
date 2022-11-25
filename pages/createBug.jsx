@@ -1,7 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const createBug = () => {
-  const dispatch = useDispatch();
   const { sidebarOpen } = useSelector((state) => state.viewReducer);
 
   return (

@@ -5,30 +5,22 @@ const slice = createSlice({
   initialState: {
     isAdmin: false,
     loggedIn: false,
+    token: "",
+    status: null,
   },
-
   reducers: {
-    attemptTokenLogin(token) {
-      if (!token) {
-        token = window.localStorage.getItem("token");
-      }
-    },
     signIn(state, action) {
       const { name, password } = action.payload;
-
-      if (name === "admin") {
-        state.isAdmin = true;
-      }
+      state.isAdmin = true;
       state.loggedIn = true;
     },
     signOut(state) {
       state.loggedIn = false;
       state.isAdmin = false;
     },
-    createUser(state, action) {},
   },
 });
 
-export const test = () => {};
-export const { signIn, signOut, createUser } = slice.actions;
+export const { signIn, signOut } = slice.actions;
+// export const {} = slice.actions;
 export default slice.reducer;

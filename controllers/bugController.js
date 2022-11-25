@@ -1,5 +1,3 @@
-import bugModel from "./models/bugModel";
-
 export const bugPriorityLevel = (num) => {
   switch (num) {
     case 1:
@@ -13,22 +11,8 @@ export const bugPriorityLevel = (num) => {
   }
 };
 
-export const bugBorderColor = (num) => {
-  switch (num) {
-    case 1:
-      return "border-t-4 border-t-errorRed";
-    case 2:
-      return "border-t-4 border-t-cautionOrange";
-    case 3:
-      return "border-t-4 border-t-signalGreen";
-    default:
-      return "";
-  }
-};
-
 //TEMP DATA RETRIEVER
 //TODO: REPLACE WHEN DATABASE IS SETUP
-
 export const retrieveBugs = () => {
   const tempBugs = [
     {

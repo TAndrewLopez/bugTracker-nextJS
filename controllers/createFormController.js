@@ -15,6 +15,5 @@ export const validateCreateForm = (form) => {
     console.error("Password do not match.");
     return false;
   }
-
   return true;
 };

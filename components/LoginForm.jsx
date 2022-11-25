@@ -14,23 +14,50 @@ const LoginForm = () => {
     password: "",
   });
 
+  const attemptTokenLogin = async (token) => {
+    const options = {
+      method: "GET",
+      headers: {
+        token,
+      },
+    };
+    const user = await fetch("api/auth", options)
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+
+    if (!user) {
+      console.log("display whatever error message");
+      return;
+    }
+    console.log("are you there", user);
+
+    //TODO: IF USER EXIST SET AUTH STATUS IN REDUX STORE IF NOT RESET FORM AND DISPLAY ERROR MESSAGES
+  };
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
-    if (form.username && form.password) {
-      const options = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      };
-
-      const { token } = await fetch("api/auth/login", options)
-        .then((response) => response.json())
-        .catch((err) => console.error(err));
-
-      console.log("response from login form: ", token);
+    if (!form.username || !form.password) {
+      if (!form.username) {
+        setNameFieldValidation(true);
+      }
+      if (!form.password) {
+        setPasswordFieldValidation(true);
+      }
+      return;
     }
 
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    };
+
+    const { token } = await fetch("api/auth/login", options)
+      .then((response) => response.json())
+      .catch((err) => console.error(err));
+
+    attemptTokenLogin(token);
     // TODO: RESET FORM AFTER SUBMISSION
     // setForm({
     //   username: "",
@@ -62,18 +89,15 @@ const LoginForm = () => {
         }}
         onBlur={() => {
           if (!form.username) {
-            setNameFieldValidation(!nameFieldValidation);
             setNameFocused(false);
           }
         }}
-        required
         id="username"
-        className="relative z-10 w-full pl-8 p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none"
+        className="relative z-10 w-full pl-8 p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent"
         onChange={(evt) => setForm({ ...form, username: evt.target.value })}
         onClick={() => setNameFocused(true)}
         value={form.username}
         name="name"
-        placeholder="Username"
       />
       <p
         onClick={() => setNameFieldValidation(false)}
@@ -105,18 +129,15 @@ const LoginForm = () => {
         }}
         onBlur={(evt) => {
           if (!form.password) {
-            setPasswordFieldValidation(!passwordFieldValidation);
             setPasswordFocused(false);
           }
         }}
-        required
         id="password"
-        className="relative z-10 w-full pl-8 p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none"
+        className="relative z-10 w-full pl-8 p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent"
         onChange={(evt) => setForm({ ...form, password: evt.target.value })}
         onClick={() => setPasswordFocused(true)}
         value={form.password}
         name="password"
-        placeholder="Password"
         type="password"
       />
 

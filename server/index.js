@@ -5,13 +5,14 @@ const init = async () => {
     console.log("Starting connection...");
     await conn.sync({ force: true });
     await User.create({
-      firstName: "test",
-      lastName: "account",
+      firstName: "Squash",
+      lastName: "Creator",
       username: "admin",
       email: "admin@squashcrm.com",
       password: "password",
       isAdmin: true,
     });
+
     await conn.close();
     console.log("Completed.");
   } catch (error) {

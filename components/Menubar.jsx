@@ -9,20 +9,11 @@ import {
   BellIcon,
 } from "../assets/faIcons";
 
-/*
-    <div
-      className={`fixed top-0 z-[-1] h-full w-full md:w-80 pt-20 pb-4 text-xl flex flex-col justify-between text-light bg-blueGrey ease-in-out duration-300 
-      ${sidebarOpen ? "translate-x-0" : "translate-x-[-100%]"}`}>
-
-
-
-       <div className="flex justify-between text-light py-4 px-4 md:px-8 bg-darkBlueGrey gap-4">
-*/
 const Menubar = () => {
   const dispatch = useDispatch();
   const { sidebarOpen } = useSelector((state) => state.viewReducer);
   return (
-    <div className="fixed w-full flex justify-between text-light py-4 px-4 md:px-8 bg-darkBlueGrey gap-4">
+    <div className="fixed z-[10] w-full flex justify-between text-light py-4 px-4 md:px-8 bg-darkBlueGrey gap-4">
       {/* NAVIGATION TOGGLE AND DROPDOWN */}
       <div className="flex gap-4">
         <BugIcon

@@ -10,7 +10,14 @@ const CreateAccountForm = ({ toggle }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    // TODO: VALIDATE FORM BEFORE SENDING TO BACKEND
+    if (!form.username || !form.email || !form.password || !form.confirm) {
+      //SOMETHING WAS MISSING FROM THE FORM
+      return;
+    }
+    if (form.password !== form.confirm) {
+      //PASSWORDS DON'T MATCH
+      return;
+    }
 
     const options = {
       method: "POST",
@@ -46,9 +53,10 @@ const CreateAccountForm = ({ toggle }) => {
             <span className="ml-1 text-xs text-light">Required</span>
           </label>
           <input
+            required
             id="username"
             name="username"
-            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
+            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
             onChange={(evt) => setForm({ ...form, username: evt.target.value })}
             value={form.username}
           />
@@ -63,10 +71,11 @@ const CreateAccountForm = ({ toggle }) => {
           <span className="ml-1 text-xs text-light">Required</span>
         </label>
         <input
+          required
           id="email"
           type="email"
           name="email"
-          className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
+          className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
           onChange={(evt) => setForm({ ...form, email: evt.target.value })}
           value={form.email}
         />
@@ -81,10 +90,11 @@ const CreateAccountForm = ({ toggle }) => {
             <span className="ml-1 text-xs text-light">Required</span>
           </label>
           <input
+            required
             id="password"
             name="password"
             type="password"
-            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
+            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
             onChange={(evt) => setForm({ ...form, password: evt.target.value })}
             value={form.password}
           />
@@ -96,10 +106,11 @@ const CreateAccountForm = ({ toggle }) => {
             <span className="ml-1 text-xs text-light">Required</span>
           </label>
           <input
+            required
             id="confirm"
             name="confirm"
             type="password"
-            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-none border-2"
+            className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
             onChange={(evt) => setForm({ ...form, confirm: evt.target.value })}
             value={form.confirm}
           />
@@ -128,9 +139,3 @@ const CreateAccountForm = ({ toggle }) => {
 };
 
 export default CreateAccountForm;
-
-// {/* <span className="fixed top-20 left-0 w-full md:w-auto md:left-[50%] md:translate-x-[-50%] bg-errorRed text-light text-center px-3">
-// {/* PASSWORDS DO NOT MATCH */}
-// {/* USERNAME IS UNAVAILABLE */}
-// USERNAME CAN ONLY USE LETTERS, NUMBERS, & PERIODS.
-// </span> */}

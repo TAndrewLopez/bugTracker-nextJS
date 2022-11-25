@@ -1,15 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signIn } from "../redux/features/authSlice";
 import { UsersIcon, AddUserIcon, AdminIcon } from "../assets/faIcons";
 
 import { LoginForm, CreateAccountForm } from "../components";
 
 export default function Login() {
-  const dispatch = useDispatch();
-
   //LOGIN ICON STATE
   const [toggleIcons, setToggleIcons] = useState(true);
+
   const [adminHover, setAdminHover] = useState(false);
   const [employeeHover, setEmployeeHover] = useState(false);
   const [newUserHover, setNewUserHover] = useState(false);
@@ -28,14 +25,7 @@ export default function Login() {
       {toggleIcons ? (
         <div className="w-full fixed bottom-3 flex justify-center gap-16 md:gap-24">
           <div
-            onClick={() =>
-              dispatch(
-                signIn({
-                  name: "admin",
-                  password: "password",
-                })
-              )
-            }
+            onClick={() => {}}
             onMouseEnter={() => {
               if (!adminHover) setAdminHover(true);
             }}
@@ -58,14 +48,7 @@ export default function Login() {
           </div>
 
           <div
-            onClick={() =>
-              dispatch(
-                signIn({
-                  name: "employee",
-                  password: "password",
-                })
-              )
-            }
+            onClick={() => {}}
             onMouseEnter={() => {
               if (!employeeHover) setEmployeeHover(true);
             }}

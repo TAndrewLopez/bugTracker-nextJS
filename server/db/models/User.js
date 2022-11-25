@@ -1,9 +1,7 @@
 const conn = require("../conn");
-// const { Sequelize } = conn;
 const {
   Sequelize: { STRING, BOOLEAN },
 } = conn;
-// const { STRING, BOOLEAN } = Sequelize;
 
 //AUTH IMPORTS
 const jwt = require("jsonwebtoken");
@@ -41,7 +39,10 @@ const User = conn.define("user", {
 //PROTOTYPE METHODS
 User.prototype.generateToken = function () {
   const token = jwt.sign(
-    { id: this.id, username: this.username },
+    {
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, //EXPIRES IN 30 DAYS
+      id: this.id,
+    },
     process.env.JWT
   );
   return token;
@@ -52,27 +53,6 @@ User.prototype.correctPassword = function (password) {
 };
 
 //INSTANCE METHODS
-User.findByToken = async (token) => {
-  try {
-    const user = await User.findByPk(token);
-
-    if (!user) {
-      const error = Error(
-        "Cannot find user with provided token. Bad Credentials."
-      );
-      error.status = 401;
-      throw error;
-    }
-    return user;
-  } catch (err) {
-    const error = Error(
-      "Cannot find user with provided token. Bad Credentials."
-    );
-    error.status = 401;
-    throw error;
-  }
-};
-
 User.authenticate = async ({ username, password }) => {
   const user = await User.findOne({ where: { username } });
   if (!user || !(await user.correctPassword(password))) {
@@ -81,6 +61,29 @@ User.authenticate = async ({ username, password }) => {
     throw error;
   }
   return user.generateToken();
+};
+
+//TAKES A TOKEN, VERIFIES IT WITH JWT. USES ID TO GET USER FROM DB
+User.findByToken = async (token) => {
+  try {
+    const { id } = await jwt.verify(token, process.env.JWT);
+    const user = await User.findByPk(id);
+
+    //FOR WHATEVER REASON IF WE RECEIVE A TOKEN AND I.D. BUT IT'S NOT IN THE DATABASE...
+    if (!user) {
+      const error = Error("User doesn't exist in database...");
+      error.status = 401;
+      throw error;
+    }
+
+    return user;
+  } catch (err) {
+    const error = Error(
+      "Cannot find user with provided information. Bad Credentials."
+    );
+    error.status = 401;
+    throw error;
+  }
 };
 
 //HOOKS
