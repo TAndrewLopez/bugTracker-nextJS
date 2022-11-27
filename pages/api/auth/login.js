@@ -18,12 +18,13 @@ export default async function handler(req, res) {
           path: "/",
         })
       );
-      // return res.status(201).send({ token });
-      return res.status(201).json({ token: true });
+
+      return res.status(200).json({ message: "Success" });
     } catch (error) {
       return res.status(500).json({
         message:
           "An error has occurred during login. Please resubmit to try again.",
+        error,
       });
     }
   }

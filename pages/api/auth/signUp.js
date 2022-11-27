@@ -1,4 +1,4 @@
-const { User } = require("../../../server/db");
+import { User } from "../../../server/db";
 import cookie from "cookie";
 
 export default async function handler(req, res) {
@@ -11,6 +11,7 @@ export default async function handler(req, res) {
         email,
         password,
       });
+      const token = await user.generateToken();
 
       if (!user) {
         res.status(401).json({
@@ -18,7 +19,6 @@ export default async function handler(req, res) {
             "An error has occurred during sign up. Please resubmit to try again.",
         });
       }
-      const token = await user.generateToken();
 
       res.setHeader(
         "Set-Cookie",
@@ -31,10 +31,11 @@ export default async function handler(req, res) {
         })
       );
 
-      return res.status(201).send({ token });
+      return res.status(200).json({ message: "Success" });
     } catch (error) {
-      return res.status(500).send({
-        message: error.errors[0].message,
+      return res.status(500).json({
+        message:
+          "An error has occurred during login. Please resubmit to try again.",
         error,
       });
     }

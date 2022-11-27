@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
-//REDUX THUNK
 import { getUser } from "../redux/features/authSlice";
+
 //ICONS
 import { ErrorIcon, LockIcon, ProfileIcon } from "../assets/faIcons";
 
@@ -32,23 +31,20 @@ const LoginForm = () => {
       return;
     }
 
-    const options = {
+    const { message, error } = await fetch("api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
-    };
-
-    const { token } = await fetch("api/auth/login", options)
+    })
       .then((response) => response.json())
       .catch((err) => console.error(err));
 
-    if (!token) {
+    if (error) {
       setFormError(true);
       return;
     }
-
-    dispatch(getUser(token));
-
+    dispatch(getUser());
+    // dispatch(getUser(token));
     //RESET STATES
     setNameFocused(false);
     setPasswordFocused(false);
