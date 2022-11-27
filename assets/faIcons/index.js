@@ -7,6 +7,7 @@ export { default as CloseIcon } from "./CloseIcon";
 export { default as DotIcon } from "./DotIcon";
 export { default as DropDownIcon } from "./DropDownIcon";
 export { default as ErrorIcon } from "./ErrorMessageIcon";
+export { default as EyeIcon } from "./EyeIcon";
 export { default as LockIcon } from "./LockIcon";
 export { default as MagnifyingGlassIcon } from "./MagnifyingGlassIcon";
 export { default as PlusIcon } from "./PlusIcon";

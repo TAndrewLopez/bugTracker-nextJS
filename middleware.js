@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-const { log } = console;
 
-export default (req) => {
-  // log("middleware", req.nextUrl);
+export default async (req) => {
+  // console.log(req.headers.cookie);
 };
 
 // document.cookie = "name=drew";

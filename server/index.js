@@ -12,6 +12,14 @@ const init = async () => {
       password: "password",
       isAdmin: true,
     });
+    await User.create({
+      firstName: "John",
+      lastName: "Doe",
+      username: "employee",
+      email: "user@squashcrm.com",
+      password: "password",
+      isAdmin: false,
+    });
 
     await conn.close();
     console.log("Completed.");

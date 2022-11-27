@@ -1,9 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
+//REDUX THUNK
+import { getUser } from "../redux/features/authSlice";
 //ICONS
 import { ErrorIcon, LockIcon, ProfileIcon } from "../assets/faIcons";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const [formError, setFormError] = useState(false);
   const [nameFocused, setNameFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [nameFieldValidation, setNameFieldValidation] = useState(false);
@@ -13,26 +18,6 @@ const LoginForm = () => {
     username: "",
     password: "",
   });
-
-  const attemptTokenLogin = async (token) => {
-    const options = {
-      method: "GET",
-      headers: {
-        token,
-      },
-    };
-    const user = await fetch("api/auth", options)
-      .then((response) => response.json())
-      .catch((err) => console.error(err));
-
-    if (!user) {
-      console.log("display whatever error message");
-      return;
-    }
-    console.log("are you there", user);
-
-    //TODO: IF USER EXIST SET AUTH STATUS IN REDUX STORE IF NOT RESET FORM AND DISPLAY ERROR MESSAGES
-  };
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -57,19 +42,37 @@ const LoginForm = () => {
       .then((response) => response.json())
       .catch((err) => console.error(err));
 
-    attemptTokenLogin(token);
-    // TODO: RESET FORM AFTER SUBMISSION
-    // setForm({
-    //   username: "",
-    //   password: "",
-    // });
+    if (!token) {
+      setFormError(true);
+      return;
+    }
+
+    dispatch(getUser(token));
+
+    //RESET STATES
+    setNameFocused(false);
+    setPasswordFocused(false);
+    setForm({
+      username: "",
+      password: "",
+    });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 className="w-full text-4xl font-semibold text-light text-center mb-4">
+      <h1 className="w-full text-4xl font-semibold text-light text-center mb-2 after:content-[''] after:block after:h-[2px] after:bg-accent">
         Account Login
       </h1>
+
+      <p
+        onClick={() => setFormError(false)}
+        className={`relative z-5 top-[-35px] rounded-sm text-errorRed bg-white flex justify-center items-center gap-2 cursor-pointer 
+        ease-in-out duration-500 ${
+          formError ? "translate-y-[35px] opacity-100" : "opacity-0"
+        }`}>
+        Error: Invalid Credentials
+        <ErrorIcon twClass="w-5 fill-errorRed" />
+      </p>
 
       {/* USERNAME INPUT */}
       <label className="relative text-light" htmlFor="username">
@@ -83,6 +86,7 @@ const LoginForm = () => {
       <input
         onFocus={() => {
           setNameFocused(true);
+          setFormError(false);
           if (nameFieldValidation) {
             setNameFieldValidation(!nameFieldValidation);
           }
@@ -123,6 +127,7 @@ const LoginForm = () => {
       <input
         onFocus={() => {
           setPasswordFocused(true);
+          setFormError(false);
           if (passwordFieldValidation) {
             setPasswordFieldValidation(!passwordFieldValidation);
           }

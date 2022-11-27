@@ -1,6 +1,14 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getUser } from "../redux/features/authSlice";
+import { ErrorIcon } from "../assets/faIcons";
 
 const CreateAccountForm = ({ toggle }) => {
+  const dispatch = useDispatch();
+
+  const [errMessage, setErrMessage] = useState("");
+  const [formError, setFormError] = useState(false);
+
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -10,12 +18,9 @@ const CreateAccountForm = ({ toggle }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    if (!form.username || !form.email || !form.password || !form.confirm) {
-      //SOMETHING WAS MISSING FROM THE FORM
-      return;
-    }
     if (form.password !== form.confirm) {
-      //PASSWORDS DON'T MATCH
+      setErrMessage("passwords must match");
+      setFormError(true);
       return;
     }
 
@@ -24,26 +29,47 @@ const CreateAccountForm = ({ toggle }) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
     };
-
-    const { token } = await fetch("api/auth/signUp", options)
+    const response = await fetch("api/auth/signUp", options)
       .then((response) => response.json())
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("CURIOUS IF THIS IS THE ERROR", err));
+    console.log(response);
+    const { message, token } = response;
+    if (message) {
+      if (message.includes("username")) {
+        setErrMessage("username is unavailable");
+      }
+      if (message.includes("email")) {
+        setErrMessage("email is unavailable");
+      }
+      setFormError(true);
+      return;
+    }
 
-    console.log("response from create account form: ", token);
-    //TODO: RESET FORM AFTER SUBMISSION
-    // setForm({
-    //   username: "",
-    //   email: "",
-    //   password: "",
-    //   confirm: "",
-    // });
+    dispatch(getUser(token));
+    setErrMessage("");
+    setForm({
+      username: "",
+      email: "",
+      password: "",
+      confirm: "",
+    });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1 className="w-full text-4xl font-semibold text-light  text-center mb-4">
+      <h1 className="w-full text-4xl font-semibold text-light text-center mb-2 after:content-[''] after:block after:h-[2px] after:bg-accent">
         Create Account
       </h1>
+      <p
+        onClick={() => setFormError(false)}
+        className={`relative z-5 top-[-35px] rounded-sm text-errorRed bg-white flex justify-center items-center gap-2 cursor-pointer 
+        ease-in-out duration-500 m-3 ${
+          formError ? "translate-y-[35px] opacity-100" : "opacity-0"
+        }`}>
+        {errMessage}
+        <ErrorIcon twClass="w-5 fill-errorRed" />
+      </p>
+
       {/* TOP CONTAINER */}
       <div className="md:flex md:gap-3">
         <div className="w-full px-3">
@@ -56,9 +82,10 @@ const CreateAccountForm = ({ toggle }) => {
             required
             id="username"
             name="username"
+            value={form.username}
             className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
             onChange={(evt) => setForm({ ...form, username: evt.target.value })}
-            value={form.username}
+            onFocus={() => setFormError(false)}
           />
         </div>
       </div>
@@ -73,11 +100,12 @@ const CreateAccountForm = ({ toggle }) => {
         <input
           required
           id="email"
-          type="email"
           name="email"
+          type="email"
+          value={form.email}
           className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
           onChange={(evt) => setForm({ ...form, email: evt.target.value })}
-          value={form.email}
+          onFocus={() => setFormError(false)}
         />
       </div>
 
@@ -94,9 +122,10 @@ const CreateAccountForm = ({ toggle }) => {
             id="password"
             name="password"
             type="password"
+            value={form.password}
             className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
             onChange={(evt) => setForm({ ...form, password: evt.target.value })}
-            value={form.password}
+            onFocus={() => setFormError(false)}
           />
         </div>
         <div className="w-full px-3">
@@ -110,16 +139,17 @@ const CreateAccountForm = ({ toggle }) => {
             id="confirm"
             name="confirm"
             type="password"
+            value={form.confirm}
             className="w-full p-2 mt-2 mb-2 rounded-sm text-blueGrey outline-accent border-2"
             onChange={(evt) => setForm({ ...form, confirm: evt.target.value })}
-            value={form.confirm}
+            onFocus={() => setFormError(false)}
           />
         </div>
       </div>
       <div className="w-full px-3 flex items-center justify-between">
         <p
           onClick={() => toggle(true)}
-          className="text-accent cursor-pointer p-2">
+          className="text-accent hover:text-light cursor-pointer p-2">
           Sign in instead
         </p>
         <button
