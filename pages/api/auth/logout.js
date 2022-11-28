@@ -7,6 +7,7 @@ export default async function (req, res) {
   if (!jwt) {
     return res.status(401).json({ message: "User wasn't logged in" });
   }
+
   res.setHeader(
     "Set-Cookie",
     cookie.serialize("SquashCRM", null, {

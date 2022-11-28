@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "firstName": "Squash",
+      "lastName": "Creator",
+      "username": "admin",
+      "email": "admin@squashcrm.com",
+      "password": "password",
+      "isAdmin": true
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "username": "employee",
+      "email": "user@squashcrm.com",
+      "password": "password",
+      "isAdmin": false
+    }
+  ],
+  "tickets": [
+    {
+      "name": "MOBILE STYLES",
+      "details": "Necessary for UX",
+      "steps": "Required for each page",
+      "priority": 3,
+      "assigned": "Edwin Stone",
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "TABLE STYLES",
+      "details": "Necessary for UX",
+      "steps": "Required for each page",
+      "priority": 3,
+      "assigned": "Logan Palmer",
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "DESKTOP STYLES",
+      "details": "Necessary for UX",
+      "steps": "Required for each page",
+      "priority": 3,
+      "assigned": "Hugh Mcdowell",
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "USER CRUD",
+      "details": "GET/POST/PUT/DEL user routes",
+      "priority": 2,
+      "assigned": "Lewis Hamilton",
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "TICKET CRUD",
+      "details": "GET/POST/PUT/DEL ticket routes",
+      "priority": 2,
+      "assigned": "Alejandro Knapp",
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "AUTHENTICATION",
+      "details": "Authenticate users and validate privileges",
+      "priority": 1,
+      "assigned": "Cheyenne Mccann",
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "USER NOTIFICATIONS",
+      "details": "N/A",
+      "priority": null,
+      "creator": "Squash CRM"
+    },
+    {
+      "name": "CREATE PORT",
+      "details": "You started this project, but you still have to complete your portfolio.",
+      "steps": "Skills Sections. Projects Section. Hero Image.",
+      "priority": null,
+      "assigned": "Drew Dobson",
+      "creator": "Drew Dobson"
+    }
+  ]
+}

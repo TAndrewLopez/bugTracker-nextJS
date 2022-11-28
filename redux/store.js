@@ -1,11 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { authReducer, bugReducer, userReducer, viewReducer } from "./features";
+import { authReducer, ticketReducer, viewReducer } from "./features";
 
 const store = configureStore({
   reducer: {
     authReducer,
-    bugReducer,
-    userReducer,
+    ticketReducer,
     viewReducer,
   },
 });

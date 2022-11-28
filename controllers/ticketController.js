@@ -1,4 +1,4 @@
-export const bugPriorityLevel = (num) => {
+export const ticketPriorityLevel = (num) => {
   switch (num) {
     case 1:
       return "High";

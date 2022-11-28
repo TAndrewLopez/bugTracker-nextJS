@@ -12,7 +12,7 @@ const Sidebar = () => {
   const navLinks = [
     { path: "/", text: "Home" },
     { path: "/dashboard", text: "Dashboard" },
-    { path: "/allBugs", text: "View Bugs" },
+    { path: "/allCardView", text: "View All" },
   ];
 
   return (
@@ -40,7 +40,7 @@ const Sidebar = () => {
                 dispatch(toggleSidebar());
               }
             }}
-            href={"/createBug"}
+            href={"/createCard"}
             className="pl-8 py-2 hover:bg-accent transition-all ease-in-out duration-300">
             Create Bug
           </Link>

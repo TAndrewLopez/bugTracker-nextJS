@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleSidebar } from "../redux/features/viewSlice";
 import {
   DropDownIcon,
@@ -11,7 +11,7 @@ import {
 
 const Menubar = () => {
   const dispatch = useDispatch();
-  const { sidebarOpen } = useSelector((state) => state.viewReducer);
+
   return (
     <div className="fixed z-[10] w-full flex justify-between text-light py-4 px-4 md:px-8 bg-darkBlueGrey gap-4">
       {/* NAVIGATION TOGGLE AND DROPDOWN */}

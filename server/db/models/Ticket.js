@@ -1,6 +1,6 @@
 const conn = require("../conn");
 const {
-  Sequelize: { STRING, INTEGER },
+  Sequelize: { STRING, INTEGER, DECIMAL },
 } = conn;
 
 const Ticket = conn.define("ticket", {
@@ -14,14 +14,22 @@ const Ticket = conn.define("ticket", {
   },
   steps: {
     type: STRING,
+    defaultValue: "N/A",
     allowNull: false,
   },
   version: {
-    type: INTEGER,
+    type: DECIMAL(10, 1),
     allowNull: false,
+    defaultValue: 1,
   },
   priority: {
     type: INTEGER,
+  },
+  assigned: {
+    type: STRING,
+  },
+  creator: {
+    type: STRING,
   },
 });
 

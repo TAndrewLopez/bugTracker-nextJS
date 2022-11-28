@@ -1,25 +1,13 @@
-const { conn, User } = require("./db");
+const { conn, User, Ticket } = require("./db");
+const { users, tickets } = require("./dummyData.json");
 
 const init = async () => {
   try {
     console.log("Starting connection...");
     await conn.sync({ force: true });
-    await User.create({
-      firstName: "Squash",
-      lastName: "Creator",
-      username: "admin",
-      email: "admin@squashcrm.com",
-      password: "password",
-      isAdmin: true,
-    });
-    await User.create({
-      firstName: "John",
-      lastName: "Doe",
-      username: "employee",
-      email: "user@squashcrm.com",
-      password: "password",
-      isAdmin: false,
-    });
+
+    await Promise.all(users.map((user) => User.create(user)));
+    await Promise.all(tickets.map((ticket) => Ticket.create(ticket)));
 
     await conn.close();
     console.log("Completed.");

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { retrieveBugs } from "../../controllers/bugController";
+import { retrieveBugs } from "../../controllers/ticketController";
 
 const slice = createSlice({
-  name: "bugSlice",
+  name: "ticketSlice",
   initialState: [],
   reducers: {
     getBugs(state) {
