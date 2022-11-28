@@ -1,7 +1,10 @@
+const { Ticket } = require("../../../server/db");
+
 export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
-      return res.json({ message: "Success" });
+      const tickets = await Ticket.findAll({});
+      return res.status(200).json({ message: "Success", tickets });
     } catch (error) {
       return res
         .status(500)
