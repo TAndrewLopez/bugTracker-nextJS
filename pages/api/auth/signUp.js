@@ -13,13 +13,6 @@ export default async function handler(req, res) {
       });
       const token = await user.generateToken();
 
-      if (!user) {
-        res.status(401).json({
-          message:
-            "An error has occurred during sign up. Please resubmit to try again.",
-        });
-      }
-
       res.setHeader(
         "Set-Cookie",
         cookie.serialize("SquashCRM", token, {

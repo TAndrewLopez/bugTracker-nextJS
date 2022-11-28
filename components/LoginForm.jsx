@@ -44,7 +44,7 @@ const LoginForm = () => {
       return;
     }
     dispatch(getUser());
-    // dispatch(getUser(token));
+
     //RESET STATES
     setNameFocused(false);
     setPasswordFocused(false);

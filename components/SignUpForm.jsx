@@ -24,17 +24,16 @@ const CreateAccountForm = ({ toggle }) => {
       return;
     }
 
-    const options = {
+    const { message, error } = await fetch("api/auth/signUp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form),
-    };
-    const response = await fetch("api/auth/signUp", options)
+    })
       .then((response) => response.json())
-      .catch((err) => console.error("CURIOUS IF THIS IS THE ERROR", err));
-    console.log(response);
-    const { message, token } = response;
-    if (message) {
+      .catch((err) => console.error(err));
+
+    if (error) {
+      const message = error.errors[0].message;
       if (message.includes("username")) {
         setErrMessage("username is unavailable");
       }
@@ -45,7 +44,7 @@ const CreateAccountForm = ({ toggle }) => {
       return;
     }
 
-    dispatch(getUser(token));
+    dispatch(getUser());
     setErrMessage("");
     setForm({
       username: "",

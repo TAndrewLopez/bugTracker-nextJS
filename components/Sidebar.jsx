@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { signOut } from "../redux/features/authSlice";
+import { logoutUser } from "../redux/features/authSlice";
 import { toggleSidebar } from "../redux/features/viewSlice";
 
 const Sidebar = () => {
@@ -47,7 +47,7 @@ const Sidebar = () => {
         )}
       </ul>
       <button
-        onClick={() => dispatch(signOut())}
+        onClick={() => dispatch(logoutUser())}
         className={`bg-accent md:bg-blueGrey hover:bg-accent px-6 py-2 transition-all ease-in-out duration-300`}>
         Sign Out
       </button>
