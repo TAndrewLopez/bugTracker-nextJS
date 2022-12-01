@@ -4,9 +4,9 @@ export default async function (req, res) {
   const { cookies } = req;
   const jwt = cookies.SquashCRM;
 
-  if (!jwt) {
-    return res.status(401).json({ message: "User wasn't logged in" });
-  }
+  // if (!jwt) {
+  //   return res.status(401).json({ message: "User wasn't logged in" });
+  // }
 
   res.setHeader(
     "Set-Cookie",

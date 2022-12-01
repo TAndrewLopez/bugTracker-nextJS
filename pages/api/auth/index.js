@@ -1,5 +1,4 @@
 import { User } from "../../../server/db";
-import cookie from "cookie";
 
 export default async function handler(req, res) {
   //HANDLES REQUEST FOR CREATING NEW USERS

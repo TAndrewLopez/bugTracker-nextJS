@@ -3,8 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const slice = createSlice({
   name: "auth",
   initialState: {
-    isAdmin: true,
-    loggedIn: true,
+    user: {},
+    isAdmin: false,
+    loggedIn: false,
     loading: false,
   },
   reducers: {
@@ -20,6 +21,11 @@ const slice = createSlice({
     });
     builder.addCase(getUser.fulfilled, (state, action) => {
       if (action.payload) {
+        state.user = {
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          username: action.payload.username,
+        };
         if (action.payload.isAdmin) {
           state.isAdmin = action.payload.isAdmin;
         }
@@ -30,6 +36,8 @@ const slice = createSlice({
     builder.addCase(logoutUser.fulfilled, (state, action) => {
       state.isAdmin = false;
       state.loggedIn = false;
+      state.loading = false;
+      state.user = {};
     });
   },
 });

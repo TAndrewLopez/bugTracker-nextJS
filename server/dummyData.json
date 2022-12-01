@@ -23,45 +23,51 @@
       "details": "Necessary for UX",
       "steps": "Required for each page",
       "priority": 3,
-      "assigned": "Edwin Stone",
-      "creator": "Squash CRM"
+      "assignee": "Edwin Stone",
+      "creator": "Squash CRM",
+      "status": "feature request"
     },
     {
       "name": "TABLE STYLES",
       "details": "Necessary for UX",
       "steps": "Required for each page",
       "priority": 3,
-      "assigned": "Logan Palmer",
-      "creator": "Squash CRM"
+      "assignee": "Logan Palmer",
+      "creator": "Squash CRM",
+      "status": "feature request"
     },
     {
       "name": "DESKTOP STYLES",
       "details": "Necessary for UX",
       "steps": "Required for each page",
       "priority": 3,
-      "assigned": "Hugh Mcdowell",
-      "creator": "Squash CRM"
+      "assignee": "Hugh Mcdowell",
+      "creator": "Squash CRM",
+      "status": "feature request"
     },
     {
       "name": "USER CRUD",
       "details": "GET/POST/PUT/DEL user routes",
       "priority": 2,
-      "assigned": "Lewis Hamilton",
-      "creator": "Squash CRM"
+      "assignee": "Lewis Hamilton",
+      "creator": "Squash CRM",
+      "status": "closed"
     },
     {
       "name": "TICKET CRUD",
       "details": "GET/POST/PUT/DEL ticket routes",
       "priority": 2,
-      "assigned": "Alejandro Knapp",
-      "creator": "Squash CRM"
+      "assignee": "Alejandro Knapp",
+      "creator": "Squash CRM",
+      "status": "solved"
     },
     {
       "name": "AUTHENTICATION",
       "details": "Authenticate users and validate privileges",
       "priority": 1,
-      "assigned": "Cheyenne Mccann",
-      "creator": "Squash CRM"
+      "assignee": "Cheyenne Mccann",
+      "creator": "Squash CRM",
+      "status": "closed"
     },
     {
       "name": "USER NOTIFICATIONS",
@@ -74,8 +80,9 @@
       "details": "You started this project, but you still have to complete your portfolio.",
       "steps": "Skills Sections. Projects Section. Hero Image.",
       "priority": null,
-      "assigned": "Drew Dobson",
-      "creator": "Drew Dobson"
+      "assignee": "Drew Dobson",
+      "creator": "Drew Dobson",
+      "status": "needs response"
     }
   ]
 }

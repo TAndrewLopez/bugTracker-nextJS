@@ -24,7 +24,20 @@ export default function Login() {
       {toggleIcons ? (
         <div className="w-full fixed bottom-3 flex justify-center gap-16 md:gap-24">
           <div
-            onClick={() => {}}
+            onClick={async () => {
+              await fetch("api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  username: "admin",
+                  password: "password",
+                }),
+              })
+                .then((response) => response.json())
+                .catch((err) => console.error(err));
+
+              dispatch(getUser());
+            }}
             onMouseEnter={() => {
               if (!adminHover) setAdminHover(true);
             }}
@@ -47,7 +60,20 @@ export default function Login() {
           </div>
 
           <div
-            onClick={() => {}}
+            onClick={async () => {
+              await fetch("api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  username: "employee",
+                  password: "password",
+                }),
+              })
+                .then((response) => response.json())
+                .catch((err) => console.error(err));
+
+              dispatch(getUser());
+            }}
             onMouseEnter={() => {
               if (!employeeHover) setEmployeeHover(true);
             }}

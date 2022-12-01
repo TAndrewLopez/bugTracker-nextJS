@@ -23,6 +23,7 @@ module.exports = {
         sans: "Poppins",
       },
       boxShadow: {
+        "1xl": "0 10px 10px rgba(0,0,0,0.2)",
         "3xl": "0 30px 40px -20px rgba(76, 78,97, 0.8)",
       },
     },

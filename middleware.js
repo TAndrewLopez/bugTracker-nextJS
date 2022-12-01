@@ -1,8 +1,5 @@
-import { NextResponse } from "next/server";
-
-export default async (req) => {
-  // console.log(req.headers.cookie);
-};
+import { NextResponse, NextRequest } from "next/server";
+export default async (req) => {};
 
 // document.cookie = "name=drew";
 // req.cookies.set("loggedIn", "true");

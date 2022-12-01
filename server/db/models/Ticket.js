@@ -17,6 +17,10 @@ const Ticket = conn.define("ticket", {
     defaultValue: "N/A",
     allowNull: false,
   },
+  status: {
+    type: STRING,
+    defaultValue: "open",
+  },
   version: {
     type: DECIMAL(10, 1),
     allowNull: false,
@@ -25,8 +29,9 @@ const Ticket = conn.define("ticket", {
   priority: {
     type: INTEGER,
   },
-  assigned: {
+  assignee: {
     type: STRING,
+    defaultValue: "unassigned",
   },
   creator: {
     type: STRING,
