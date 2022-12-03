@@ -12,9 +12,10 @@ export const ticketPriorityLevel = (num) => {
 };
 
 export const returnUserInitials = (str) => {
-  if (str === "unassigned") {
+  if (!str || str === "unassigned" || str.length < 2) {
     return "N/A";
   }
+
   const [fname, lname] = str.split(" ");
   return `${fname[0]}${lname[0]}`;
 };
