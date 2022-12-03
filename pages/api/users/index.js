@@ -6,7 +6,7 @@ export default async function handler(req, res) {
       const { cookies } = req;
       let token = cookies.SquashCRM;
       const users = await User.findAll({
-        attributes: ["username"],
+        attributes: ["username", "id"],
       });
       if (req.headers.squashcrm) {
         token = req.headers.squashcrm;

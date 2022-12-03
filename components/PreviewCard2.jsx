@@ -1,11 +1,10 @@
-import { useSelector } from "react-redux";
 import { ThumbtackIcon, StarIcon, EllipsisIcon } from "../assets/faIcons";
 import {
   ticketPriorityLevel,
   returnUserInitials,
 } from "../controllers/ticketController";
 
-const PreviewCardv2 = ({ data }) => {
+const PreviewCard2 = ({ data }) => {
   const {
     id,
     name,
@@ -117,4 +116,4 @@ const PreviewCardv2 = ({ data }) => {
   );
 };
 
-export default PreviewCardv2;
+export default PreviewCard2;

@@ -1,6 +1,7 @@
 import { ticketPriorityLevel } from "../controllers/ticketController";
 
 const PreviewCard = ({ data }) => {
+  console.log(data);
   const { name, details, steps, version, assigned, creator, priority } = data;
 
   const ticketPriorityBorderColor = (num) => {

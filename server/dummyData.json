@@ -19,13 +19,24 @@
   ],
   "tickets": [
     {
+      "name": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su",
+      "details": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su",
+      "steps": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su",
+      "priority": 3,
+      "assignee": "Taylor Lloyd-Atkinson",
+      "creator": "Squash CRM",
+      "status": "feature request",
+      "userId": 2
+    },
+    {
       "name": "MOBILE STYLES",
       "details": "Necessary for UX",
       "steps": "Required for each page",
       "priority": 3,
       "assignee": "Edwin Stone",
       "creator": "Squash CRM",
-      "status": "feature request"
+      "status": "feature request",
+      "userId": 2
     },
     {
       "name": "TABLE STYLES",
@@ -34,7 +45,8 @@
       "priority": 3,
       "assignee": "Logan Palmer",
       "creator": "Squash CRM",
-      "status": "feature request"
+      "status": "feature request",
+      "userId": 2
     },
     {
       "name": "DESKTOP STYLES",
@@ -43,7 +55,8 @@
       "priority": 3,
       "assignee": "Hugh Mcdowell",
       "creator": "Squash CRM",
-      "status": "feature request"
+      "status": "feature request",
+      "userId": 2
     },
     {
       "name": "USER CRUD",
@@ -51,7 +64,8 @@
       "priority": 2,
       "assignee": "Lewis Hamilton",
       "creator": "Squash CRM",
-      "status": "closed"
+      "status": "closed",
+      "userId": 1
     },
     {
       "name": "TICKET CRUD",
@@ -59,7 +73,8 @@
       "priority": 2,
       "assignee": "Alejandro Knapp",
       "creator": "Squash CRM",
-      "status": "solved"
+      "status": "solved",
+      "userId": 1
     },
     {
       "name": "AUTHENTICATION",
@@ -67,7 +82,8 @@
       "priority": 1,
       "assignee": "Cheyenne Mccann",
       "creator": "Squash CRM",
-      "status": "closed"
+      "status": "closed",
+      "userId": 1
     },
     {
       "name": "USER NOTIFICATIONS",

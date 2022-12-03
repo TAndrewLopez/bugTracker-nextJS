@@ -1,17 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PreviewCard, PreviewCardv2 } from "../components";
+import { PreviewCard, PreviewCard2, PreviewCard3 } from "../components";
 import { getTickets } from "../redux/features/ticketSlice";
 
-const BugsView = () => {
+const allCardView = () => {
   const dispatch = useDispatch();
-  let { tickets, loading } = useSelector((state) => state.ticketReducer);
-
+  const { tickets, loading } = useSelector((state) => state.ticketReducer);
   const { sidebarOpen } = useSelector((state) => state.viewReducer);
 
   //TODO://REMOVE FAKE FETCH DATA WITH FETCH FROM DATA BASE. POSSIBLY WITH SERVER SIDE PROPS?
   useEffect(() => {
-    if (!tickets.length) {
+    if (!tickets?.length) {
       dispatch(getTickets());
     }
   }, []);
@@ -24,11 +23,12 @@ const BugsView = () => {
       {loading
         ? "LOADING..."
         : tickets?.map((ticket) => {
-            return <PreviewCardv2 key={ticket.id} data={ticket} />;
             // return <PreviewCard key={ticket.id} data={ticket} />;
+            // return <PreviewCard2 key={ticket.id} data={ticket} />;
+            return <PreviewCard3 key={ticket.id} data={ticket} />;
           })}
     </div>
   );
 };
 
-export default BugsView;
+export default allCardView;
