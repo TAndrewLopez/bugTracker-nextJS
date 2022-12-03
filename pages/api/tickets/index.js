@@ -3,13 +3,14 @@ const { Ticket } = require("../../../server/db");
 export default async function handler(req, res) {
   const { cookies } = req;
   const token = cookies.SquashCRM;
+
   if (req.method === "GET") {
     try {
       if (!token) {
         return res.status(401).json({ message: "Unauthorized" });
       }
-
       const tickets = await Ticket.findAll({});
+      tickets.sort((a, b) => a.id - b.id);
       return res.status(200).json({ message: "Success", tickets });
     } catch (error) {
       return res
@@ -23,7 +24,6 @@ export default async function handler(req, res) {
       if (!token) {
         return res.status(401).json({ message: "Unauthorized" });
       }
-      console.log(req.body, "hello");
       const {
         name,
         details,

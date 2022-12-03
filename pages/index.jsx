@@ -11,8 +11,8 @@ export default () => {
       className={`absolute top-[76px] z-[-2] flex flex-col justify-center ease-in-out duration-300 p-4
       ${sidebarOpen ? "md:pl-80 w-full" : "w-full"}`}>
       <h1>
-        Welcome, <span className="font-semibold">{firstName}</span> to Squash
-        CRM!
+        Greetings <span className="font-semibold">{firstName}</span>, welcome to
+        Squash CRM!
       </h1>
     </div>
   );

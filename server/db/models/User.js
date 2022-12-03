@@ -45,6 +45,8 @@ User.prototype.generateToken = function () {
     {
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30, //EXPIRES IN 30 DAYS
       id: this.id,
+      username: this.username,
+      isAdmin: this.isAdmin,
     },
     process.env.JWT
   );
