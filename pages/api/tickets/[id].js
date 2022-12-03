@@ -10,11 +10,12 @@ export default async function handler(req, res) {
 
   const token = cookies.SquashCRM;
 
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized Request." });
+  }
+
   if (method === "PUT") {
     try {
-      if (!token) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
       const {
         name,
         details,
@@ -25,7 +26,13 @@ export default async function handler(req, res) {
         version,
         userId,
       } = body;
+
       const ticket = await Ticket.findByPk(id);
+
+      if (!ticket) {
+        return res.status(500).json({ message: "Unable to update ticket." });
+      }
+
       await ticket.update({
         name,
         details,
@@ -36,33 +43,32 @@ export default async function handler(req, res) {
         version,
         userId,
       });
+
       return res.status(201).json(ticket);
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: `An error occurred at api/tickets/${id}` });
+      return res.status(500).json({
+        message: `An error has occurred on api/tickets/${id} route.`,
+        error,
+      });
     }
   }
   if (method === "DELETE") {
     try {
-      if (!token) {
-        return res.status(401).json({ message: "Unauthorized" });
-      }
-
       const ticket = await Ticket.findByPk(id);
 
       if (!ticket) {
         return res
           .status(500)
-          .json({ message: `An error occurred at api/tickets/${id}` });
+          .json({ message: `Unable to delete ticket #${id}` });
       }
 
       await ticket.destroy();
       return res.status(201).json(ticket);
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: `An error occurred at api/tickets/${id}` });
+      return res.status(500).json({
+        message: `An error has occurred on api/tickets/${id} route.`,
+        error,
+      });
     }
   }
 }

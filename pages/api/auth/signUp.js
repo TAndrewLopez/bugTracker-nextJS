@@ -2,7 +2,6 @@ import { User } from "../../../server/db";
 import cookie from "cookie";
 
 export default async function handler(req, res) {
-  //HANDLES REQUEST FOR CREATING NEW USERS
   if (req.method === "POST") {
     try {
       const { username, email, password } = req.body;
@@ -11,6 +10,11 @@ export default async function handler(req, res) {
         email,
         password,
       });
+
+      if (!user) {
+        return res.status(401).json({ message: "Unable to create user." });
+      }
+
       const token = await user.generateToken();
 
       res.setHeader(
@@ -24,11 +28,10 @@ export default async function handler(req, res) {
         })
       );
 
-      return res.status(200).json({ message: "Success" });
+      return res.status(201).json({ message: "Success" });
     } catch (error) {
       return res.status(500).json({
-        message:
-          "An error has occurred during login. Please resubmit to try again.",
+        message: "An error has occurred on api/auth/signUp route.",
         error,
       });
     }
