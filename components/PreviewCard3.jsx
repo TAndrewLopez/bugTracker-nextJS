@@ -10,19 +10,20 @@ const PreviewCard3 = ({ data }) => {
 
   return (
     <div
+      onClick={(evt) => console.log(data)}
       className={`min-h-48 m-5 p-8 text-darkGrey cursor-pointer shadow-3xl rounded hover:scale-105 transition ease-in-out duration-300  
       ${ticketPriorityBorderColor(priority)}`}>
       {/* TICKET PANEL AND LOREM IPSUM */}
-      <div className="flex border-2">
+      <div>
         {/* SMALL INFO PANEL */}
         <div>
           <p>#{id}</p>
           <p>{status}</p>
-          {/* <div className="flex">
+          <div className="flex">
             <ThumbtackIcon twClass={"w-4"} />
             <StarIcon twClass={"w-5"} />
             <EllipsisIcon twClass={"w-4"} />
-          </div> */}
+          </div>
         </div>
         {/* DETAIL SECTION */}
         <div>
@@ -31,9 +32,9 @@ const PreviewCard3 = ({ data }) => {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row">
+      <div>
         {/* ASSIGNEE */}
-        <div className="flex items-center">
+        <div>
           <p>{returnUserInitials(assignee)}</p>
           <div>
             <p>assignee</p>
@@ -41,7 +42,7 @@ const PreviewCard3 = ({ data }) => {
           </div>
         </div>
         {/* RAISED BY */}
-        <div className="flex items-center">
+        <div>
           <p>{returnUserInitials(creator)}</p>
           <div>
             <p>raised by</p>
@@ -49,17 +50,17 @@ const PreviewCard3 = ({ data }) => {
           </div>
         </div>
         {/* PRIORITY */}
-        <div className="flex items-center">
+        <div>
           <p>priority</p>
           <p>{ticketPriorityLevel(priority)}</p>
         </div>
         {/* CATEGORY */}
-        <div className="flex items-center">
+        <div>
           <p>category</p>
           <p>HappyFox Sales</p>
         </div>
         {/* OVERDUE */}
-        <div className="flex items-center">
+        <div>
           <p>overdue by</p>
           <p>Set Due Date</p>
         </div>

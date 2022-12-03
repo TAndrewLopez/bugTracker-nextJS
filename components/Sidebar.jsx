@@ -5,9 +5,10 @@ import { toggleSidebar } from "../redux/features/viewSlice";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const { isAdmin } = useSelector((state) => state.authReducer);
-
-  const { sidebarOpen } = useSelector((state) => state.viewReducer);
+  const {
+    authReducer: { isAdmin },
+    viewReducer: { sidebarOpen },
+  } = useSelector((state) => state);
 
   const navLinks = [
     { path: "/", text: "Home" },

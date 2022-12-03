@@ -8,3 +8,4 @@ export { default as PreviewCard2 } from "./PreviewCard2";
 export { default as PreviewCard3 } from "./PreviewCard3";
 export { default as Sidebar } from "./Sidebar";
 export { default as SignUpForm } from "./SignUpForm";
+export { default as SpinningLoader } from "./SpinningLoader";

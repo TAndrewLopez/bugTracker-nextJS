@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       if (!token) {
         return res.status(401).json({ message: "Unauthorized" });
       }
+      console.log(req.body, "hello");
       const {
         name,
         details,

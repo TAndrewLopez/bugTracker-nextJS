@@ -5,8 +5,10 @@ import { getTickets } from "../redux/features/ticketSlice";
 
 const allCardView = () => {
   const dispatch = useDispatch();
-  const { tickets, loading } = useSelector((state) => state.ticketReducer);
-  const { sidebarOpen } = useSelector((state) => state.viewReducer);
+  const {
+    ticketReducer: { tickets, loading },
+    viewReducer: { sidebarOpen },
+  } = useSelector((state) => state);
 
   //TODO://REMOVE FAKE FETCH DATA WITH FETCH FROM DATA BASE. POSSIBLY WITH SERVER SIDE PROPS?
   useEffect(() => {

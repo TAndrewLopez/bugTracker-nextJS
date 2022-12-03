@@ -1,8 +1,8 @@
 {
   "users": [
     {
-      "firstName": "Squash",
-      "lastName": "Creator",
+      "firstName": "Andrew",
+      "lastName": "Dobson",
       "username": "admin",
       "email": "admin@squashcrm.com",
       "password": "password",
@@ -13,6 +13,14 @@
       "lastName": "Doe",
       "username": "employee",
       "email": "user@squashcrm.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "firstName": "Mary",
+      "lastName": "Jane",
+      "username": "client",
+      "email": "client@squashcrm.com",
       "password": "password",
       "isAdmin": false
     }

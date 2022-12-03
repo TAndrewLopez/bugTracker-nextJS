@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createTicket } from "../redux/features/ticketSlice";
+import { SpinningLoader } from "../components";
 
 const AddTicketForm = ({ names, assignees }) => {
   const dispatch = useDispatch();
-  const { username } = useSelector((state) => state.authReducer);
+  const {
+    authReducer: { username, id },
+    ticketReducer: { loading },
+  } = useSelector((state) => state);
   const [form, setForm] = useState({
-    name: "",
-    details: "",
-    steps: "",
-    status: "",
-    priority: "",
-    assignee: "",
-    version: "",
-    userId: username,
+    name: "test",
+    details: "test",
+    steps: "test",
+    status: "new",
+    priority: 1,
+    assignee: "admin",
+    version: 1,
+    userId: id,
   });
 
   const handleSubmit = async (evt) => {
@@ -32,8 +36,16 @@ const AddTicketForm = ({ names, assignees }) => {
     // });
   };
 
+  if (loading) {
+    return (
+      <div className="m-auto">
+        <SpinningLoader />
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col">
+    <form onSubmit={handleSubmit} className="flex flex-col m-5">
       {/* NAME INPUT */}
       <label className="text-darkBlueGrey" htmlFor="name">
         Name:
